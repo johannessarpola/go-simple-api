@@ -1,0 +1,18 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    branches: main
+    inputs:
+      tag:
+        description: "Tag to build release with"
+        required: true
+        type: string
+
+jobs:
+  print-tag:
+    runs-on: ubuntu-latest
+    if:  ${{ inputs.print_tags }} 
+    steps:
+      - name: Print the input tag to STDOUT
+        run: echo  The tags are ${{ inputs.tags }} 
