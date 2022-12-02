@@ -10,7 +10,7 @@ on:
         type: string
 
 jobs:
-  print-tag:
+  create-release:
     runs-on: ubuntu-latest 
     steps:
       - 
