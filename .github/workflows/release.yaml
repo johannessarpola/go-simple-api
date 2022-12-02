@@ -34,3 +34,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.split.outputs._0 }}
+      - 
+        name: Run publish container
+        id: build
+        run: |
+          gh workflow run publish-container.yaml --ref ${{ steps.split.outputs._0 }}
