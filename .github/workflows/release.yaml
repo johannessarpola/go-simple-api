@@ -1,4 +1,4 @@
-name: Create Release
+name: Create Release [DEBUG]
 
 on:
   workflow_dispatch:
