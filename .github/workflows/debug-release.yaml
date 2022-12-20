@@ -20,3 +20,5 @@ jobs:
         with:
           separator: "-"
           msg: '${{ steps.get_version.outputs.VERSION }}' # ${{ steps.split.outputs._0 }}
+      - name: Print the input tag to STDOUT
+        run: echo  The tags are ${{ steps.split.outputs._0 }}
