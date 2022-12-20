@@ -9,7 +9,7 @@ jobs:
     steps:
       - 
         name: Print the input tag to STDOUT
-        run: echo  The tags are ${{ env.GITHUB_REF }} 
+        run: echo  The tags are $GITHUB_REF
       - 
         uses: actions/checkout@v3
         with:
@@ -19,4 +19,4 @@ jobs:
         id: split
         with:
           separator: "-"
-          msg: '${{ inputs.tag }}' # ${{ steps.split.outputs._0 }}
+          msg: '${{ env.GITHUB_REF }}' # ${{ steps.split.outputs._0 }}
