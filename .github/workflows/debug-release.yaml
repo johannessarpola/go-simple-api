@@ -19,4 +19,4 @@ jobs:
         id: split
         with:
           separator: "-"
-          msg: '${{ env.VERSION }}' # ${{ steps.split.outputs._0 }}
+          msg: '${{ steps.get_version.outputs.VERSION }}' # ${{ steps.split.outputs._0 }}
