@@ -2,12 +2,6 @@ name: Create Release
 
 on:
   workflow_dispatch:
-    branches: main
-    inputs:
-      tag:
-        description: "Tag to build release with"
-        required: true
-        type: string
 
 jobs:
   create-release:
@@ -15,29 +9,8 @@ jobs:
     steps:
       - 
         name: Print the input tag to STDOUT
-        run: echo  The tags are ${{ inputs.tag }} 
+        run: echo  The tags are ${{ GITHUB_REF }} 
       - 
         uses: actions/checkout@v3
         with:
-          ref: ${{ inputs.tag }} 
-      - 
-        uses: jungwinter/split@v2
-        id: split
-        with:
-          separator: "-"
-          msg: '${{ inputs.tag }}' # ${{ steps.split.outputs._0 }}
-      - 
-        name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.split.outputs._0 }}
-      - 
-        name: Run publish container
-        id: build
-        env:
-            GH_TOKEN: ${{secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run publish-container.yaml --ref ${{ steps.split.outputs._0 }}
+          ref: ${{ GITHUB_REF }} 
