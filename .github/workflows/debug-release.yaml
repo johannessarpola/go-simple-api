@@ -7,16 +7,16 @@ jobs:
   create-release:
     runs-on: ubuntu-latest 
     steps:
-      - 
-        name: Print the input tag to STDOUT
-        run: echo  The tags are $GITHUB_REF
-      - 
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           ref: ${{ env.GITHUB_REF }} 
-      - 
-        uses: jungwinter/split@v2
+      - name: Print the input tag to STDOUT
+        run: echo  The tags are $GITHUB_REF
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      - uses: jungwinter/split@v2
         id: split
         with:
           separator: "-"
-          msg: '${{ env.GITHUB_REF }}' # ${{ steps.split.outputs._0 }}
+          msg: '${{ env.VERSION }}' # ${{ steps.split.outputs._0 }}
