@@ -9,11 +9,11 @@ jobs:
     steps:
       - 
         name: Print the input tag to STDOUT
-        run: echo  The tags are ${{ GITHUB_REF }} 
+        run: echo  The tags are ${{ env.GITHUB_REF }} 
       - 
         uses: actions/checkout@v3
         with:
-          ref: ${{ GITHUB_REF }} 
+          ref: ${{ env.GITHUB_REF }} 
       - 
         uses: jungwinter/split@v2
         id: split
