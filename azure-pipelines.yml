@@ -26,4 +26,9 @@ stages:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
-          $(tag)
+              $(tag)
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'johannessarpola-cr'
+        repository: 'go-simple-api'
+        command: 'push'
